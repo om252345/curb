@@ -39,9 +39,11 @@ mkdir -p "$CURB_BIN"
 
 # Download and extract
 TMP_DIR=$(mktemp -d)
-FILENAME="curb-backend_${VERSION#v}_${OS^}_${ARCH/amd64/x86_64}.tar.gz"
+CLEAN_V="${VERSION#v}"
+FILENAME="curb_${CLEAN_V}_${OS}_${ARCH}.tar.gz"
+
 if [[ "$OS" == "windows" ]]; then
-    FILENAME="${FILENAME%.tar.gz}.zip"
+    FILENAME="curb_${CLEAN_V}_${OS}_${ARCH}.zip"
 fi
 
 URL="$GITHUB_URL/$VERSION/$FILENAME"

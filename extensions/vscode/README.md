@@ -1,8 +1,8 @@
-# Curb for VS Code
+# Curb for Agentic IDEs (Cursor, Windsurf, VS Code)
 
-Curb is a lightweight, out-of-band security mesh that acts as a zero-trust safety net for AI coding assistants like Claude Code, Cursor, Windsurf, and Copilot.
+Curb is a lightweight, out-of-band security mesh that acts as a zero-trust safety net for AI coding assistants like **Claude Code, Cursor, Windsurf, and VS Code agents.**
 
-When you use AI agents in your VS Code terminal or integrated tools, they often run with your full system permissions. Curb wraps those environments, ensuring that agents can only execute commands and access files that you have explicitly allowed in your workspace policy (`.curb.yml`).
+When you use AI agents in your IDE terminal or integrated tools, they often run with your full system permissions. Curb wraps those environments, ensuring that agents can only execute commands and access files that you have explicitly allowed in your workspace policy (`.curb.yml`).
 
 ![Demo](https://raw.githubusercontent.com/om252345/curb/main/extensions/vscode/images/demo.gif)
 
@@ -16,9 +16,9 @@ When you use AI agents in your VS Code terminal or integrated tools, they often 
 
 ## Requirements
 
-The VS Code extension bundles the ultra-fast Go-based `curb` daemon. It requires:
+The extension bundles the ultra-fast Go-based `curb` daemon. It requires:
 - macOS (Intel/Apple Silicon), Linux, or Windows.
-- VS Code version 1.90.0 or higher.
+- Cursor, Windsurf, or VS Code (version 1.90.0 or higher).
 - (Optional but recommended) `curl` or `wget` for standalone CLI agent usage outside of VS Code.
 
 ## Extension Settings

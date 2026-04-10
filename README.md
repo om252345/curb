@@ -1,8 +1,8 @@
-# Curb: The Zero-Trust Safety Net for AI Agents
+# Curb — Preventive Security for Agentic IDEs
 
 **Stop agents from destroying your workspace.**
 
-Curb is a lightweight VS Code extension + high-performance Go backend that gives you real-time, preventive protection against destructive, sneaky, or unauthorized actions from Cursor, Claude Code, and VS Code agents. It works where it matters most — **in your real local workspace** — without forcing you into sandboxes or changing how you work.
+Curb is a lightweight extension + high-performance Go backend that gives you real-time, preventive protection against destructive, sneaky, or unauthorized actions from **Cursor, Windsurf, Claude Code, and VS Code agents.** It works where it matters most — **in your real local workspace** — without forcing you into sandboxes or changing how you work.
 
 > **Trust is the ultimate developer velocity.** When you can trust your agent to never `rm -rf` your project or leak your `.env` files, you can turn on 100% auto-approve and move at the speed of thought.
 <p align="center">
@@ -46,13 +46,16 @@ The quickest way to install the Curb binary and setup terminal protection:
 curl -fsSL https://raw.githubusercontent.com/om252345/curb/main/install.sh | bash
 ```
 
-### For VS Code
-Install the **Curb Extension** from the VS Code Marketplace. The extension will automatically manage the background security engine and provide a real-time dashboard for rule violations.
+### For VS Code based IDEs
+Install the **Curb Extension** from the VSCode/OpenVSX Marketplace. The extension will automatically manage the background security engine and provide a real-time dashboard for rule violations.
+
+If you can not find curb(as it is very new) in the marketplace, you can install it manually by downloading the vsix file from the [releases](https://github.com/om252345/curb/releases) page.
 
 ## Usage
 
 ### 1. Configure Your Rules
 Curb uses a simple, human-readable YAML configuration stored at `~/.curb/config.yml`.
+To make initial setup zero config, curb adds sample config in ~/.curb/config.yml` on first run. VSCode/Cursor/Windsurf have graphical rules builder to create/edit this config.
 
 ```yaml
 version: 1
