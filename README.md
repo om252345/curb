@@ -1,6 +1,8 @@
 # Curb: The Zero-Trust Safety Net for AI Agents
 
-Curb is a high-performance security mesh designed to bridge the trust gap between developers and AI coding assistants. By providing a transparent, policy-enforced sandbox, Curb allows you to fully leverage agentic AI without the fear of destructive or unauthorized actions.
+**Stop agents from destroying your workspace.**
+
+Curb is a lightweight VS Code extension + high-performance Go backend that gives you real-time, preventive protection against destructive, sneaky, or unauthorized actions from Cursor, Claude Code, and VS Code agents. It works where it matters most — **in your real local workspace** — without forcing you into sandboxes or changing how you work.
 
 > **Trust is the ultimate developer velocity.** When you can trust your agent to never `rm -rf` your project or leak your `.env` files, you can turn on 100% auto-approve and move at the speed of thought.
 <p align="center">
@@ -15,34 +17,25 @@ Curb is a high-performance security mesh designed to bridge the trust gap betwee
   <sub>Claude Code demo: For demonstration purposes, the agent is intentionally asked to execute potentially dangerous commands.</sub>
 </p>
 
-## The Velocity Problem
-
-Modern AI agents are incredibly powerful, but they operate with the same raw terminal permissions you do. Built-in agent sandboxes are self-managed by the AI, meaning a confused model can simply disable its own safety rails. 
-
-Curb solves this. It sits entirely outside the agent's memory as a lightweight Go daemon. It wraps the OS-level PTY and proxies the MCP, ensuring the agent only executes what your workspace policy allows.
-
-## The "Human-In-The-Loop" Advantage
-
-Curb moves security from "babysitting" to "policy-in-the-mesh." You don't have to click "Approve" 50 times an hour. You let the agent run at full speed, and Curb only pauses execution for Human-In-The-Loop (HITL) approval when a restricted command or action is attempted.
-
 ## Why Curb?
 
-Modern AI agents are incredibly powerful, but they operate with the same permissions as the developer. A single hallucination or an over-ambitious agent can result in:
-- **Destructive File Operations**: Accidental deletion of source code or git history.
-- **Data Exfiltration**: Reading sensitive configuration files or environment variables.
-- **Unauthorized Network Access**: Sending local data to unknown upstream servers.
-- **Broken Repositories**: Force-pushing half-baked code or dirtying the git state.
+Modern AI agents have evolved from suggesting code to executing it. They now run terminal commands, edit files, push to git, and call MCP tools with full access to your actual workspace. Built-in agent sandboxes are self-managed by the AI, meaning a confused/hallucinating model or an over-ambitious agent can:
 
-**Curb solves this by moving security from "human-in-the-loop" to "policy-in-the-mesh."** It intercepts every action at the OS level (PTY) and the Protocol level (MCP), ensuring that the agent only does what you've explicitly allowed.
+- **Delete files or entire folders** (e.g., accidental `rm -rf` or git history wipes)
+- **Leak secrets** from `.env` or credentials
+- **Force-push broken code** to main
+- **Run sneaky workarounds** (Python scripts, base64 payloads, nested shells)
 
-## The Four Guards Architecture
+Built-in protections in Claude Code, Cursor, and Antigravity (Strict Mode, prompts, allow/deny lists) are helpful but still limited — they rely on the agent asking nicely or running inside a natively provided sandbox.
 
-Curb enforces security through four distinct layers of protection:
+**Curb adds the missing last-mile preventive layer.** It intercepts every action at the OS level (PTY) and the Protocol level (MCP), ensuring that the agent only does what your workspace policy explicitly allows.
 
-1.  **PTY Guard**: Intercepts shell commands at the terminal level. It can "peel" through nested shell wraps (e.g., `bash -c "sh -c '...'"` ) to see the true command being executed.
-2.  **File Guard**: A kernel-level-inspired user-space firewall that prevents agents from reading or writing to protected patterns (e.g., `*.pem`, `id_rsa`, `.env`).
-3.  **Git Guard**: Specifically monitors Git operations to prevent dangerous workflows like force-pushes or unauthorized branch deletions.
-4.  **MCP Mesh**: A transparent proxy for the Model Context Protocol (MCP). It allows you to audit and block specific tool calls before they reach the upstream MCP server.
+## Core Features
+
+- **File Guard** — A kernel-inspired user-space firewall that blocks or requires approval for reading/writing sensitive paths (`.env`, secrets, credentials, etc.)
+- **CLI Guard** — PTY-based terminal interception that catches raw commands, nested subshells, base64 payloads, and Python/Ruby workarounds.
+- **Git Guard** — Specific Git operation monitoring that prevents dangerous workflows like force-pushes or unauthorized branch deletions.
+- **MCP Guard** — A transparent mesh that deeply inspects Model Context Protocol tool calls using deterministic CEL (Common Expression Language) policies.
 
 ## Installation
 
@@ -125,6 +118,3 @@ Curb is released under the [Apache 2.0 License](LICENSE).
 Curb is built by and for developers who believe that AI should be both powerful and predictable. We welcome contributions to the core engine, new IDE extensions, and the community rule-set.
 
 ---
-<p align="center">
-  Built with ❤️ by the **CurbDev** team.
-</p>
