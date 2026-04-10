@@ -1,0 +1,9 @@
+images/*
+*.vsix
+.vscodeignore
+.gitignore
+.git
+.github
+node_modules
+.DS_Store
+.curb.yml

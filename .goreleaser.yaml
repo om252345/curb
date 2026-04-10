@@ -1,0 +1,79 @@
+version: 2
+project_name: curb
+
+# 1. Build definitions for the three Go components
+builds:
+  - id: curb
+    main: ./core/main.go
+    binary: curb
+    env: [CGO_ENABLED=0]
+    goos: [linux, windows, darwin]
+    goarch: [amd64, arm64]
+  - id: interceptor
+    main: ./core/cmd/interceptor/main.go
+    binary: curb-interceptor
+    env: [CGO_ENABLED=0]
+    goos: [linux, windows, darwin]
+    goarch: [amd64, arm64]
+  - id: mcp-server
+    main: ./core/cmd/mcp-server/main.go
+    binary: curb-mcp
+    env: [CGO_ENABLED=0]
+    goos: [linux, windows, darwin]
+    goarch: [amd64, arm64]
+
+# 2. Archive settings for CLI downloads (tar.gz/zip)
+archives:
+  - id: cli-binaries
+    name_template: "curb_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
+    files:
+      - LICENSE
+      - README.md
+      - install.sh
+
+# 3. Custom Publisher for VS Code Extension
+# This runs after binaries are built to bundle the extension
+publishers:
+  - name: github-release-vsix
+    ids: [curb] 
+    cmd: |
+      # 1. Enter extension directory
+      cd extensions/vscode
+      mkdir -p bin
+      
+      # 2. Extract binaries for this specific OS/Arch from the dist folder
+      cp "../../dist/curb_{{ .Os }}_{{ .Arch }}{{ if index . "Arm" }}{{ .Arm }}{{ end }}/curb{{ .Ext }}" bin/
+      cp "../../dist/interceptor_{{ .Os }}_{{ .Arch }}{{ if index . "Arm" }}{{ .Arm }}{{ end }}/curb-interceptor{{ .Ext }}" bin/
+      cp "../../dist/mcp-server_{{ .Os }}_{{ .Arch }}{{ if index . "Arm" }}{{ .Arm }}{{ end }}/curb-mcp{{ .Ext }}" bin/
+      
+      # 3. Determine VS Code target string
+      TARGET=""
+      case "{{ .Os }}" in
+        linux) TARGET="linux-{{ .Arch }}" ;;
+        darwin) TARGET="darwin-{{ .Arch }}" ;;
+        windows) TARGET="win32-{{ .Arch }}" ;;
+      esac
+      
+      # 4. Package the extension
+      npx vsce package --target $TARGET --out "../../dist/curb-{{ .Version }}-$TARGET.vsix"
+
+# 4. Checksums for security
+checksum:
+  name_template: 'checksums.txt'
+
+# 5. Snapshot settings for testing
+snapshot:
+  name_template: "{{ incpatch .Version }}-next"
+
+# 6. Github Release settings
+release:
+  github:
+    owner: om252345
+    name: curb
+  draft: true # Start as draft for manual verification
+  extra_files:
+    - glob: ./dist/*.vsix

@@ -1,0 +1,25 @@
+# Dependencies
+extensions/vscode/node_modules/
+
+# Build artifacts
+extensions/vscode/out/
+extensions/vscode/bin/
+extensions/vscode/*.vsix
+*.vsix
+dist/
+core/curb
+core/curb-interceptor
+core/curb-mcp
+core/test_eval*
+backend/ 
+
+# Local scripts
+install_local.sh
+
+# Environment
+.env.local
+.env
+
+# OS files
+.DS_Store
+Thumbs.db

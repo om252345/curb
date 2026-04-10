@@ -1,0 +1,74 @@
+{
+  "name": "curb",
+  "displayName": "Curb",
+  "description": "Zero-Trust safety net for Claude Code, Cursor or any AI coding assistants",
+  "version": "0.1.0",
+  "publisher": "curbdev",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "AI",
+    "Programming Languages"
+  ],
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/om252345/curb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/om252345/curb/issues"
+  },
+  "homepage": "https://github.com/om252345/curb#readme",
+  "icon": "icon.png",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "curb.openDashboard",
+        "title": "Curb: Open Dashboard"
+      },
+      {
+        "command": "curb.setupTerminalGuard",
+        "title": "Curb: Enable Terminal Protection"
+      },
+      {
+        "command": "curb.unlockFile",
+        "title": "Curb: Unlock Protected File"
+      },
+      {
+        "command": "curb.selectMcpConfig",
+        "title": "Curb: Select MCP Config Location"
+      }
+    ],
+    "mcpServerDefinitionProviders": [
+      {
+        "id": "curb-security-generator",
+        "label": "Curb Security Generator"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "test": "node test-runner.js",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.2.3",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.90.0",
+    "chai": "^6.2.2",
+    "mocha": "^11.7.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3",
+    "@vscode/vsce": "^3.0.0",
+    "ovsx": "^0.9.0"
+  }
+}
