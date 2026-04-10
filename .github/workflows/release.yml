@@ -29,9 +29,10 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install vsce
-        run: npm install -g @vscode/vsce
-
+      - name: Install Node Dependencies
+        run: |
+          npm install -g @vscode/vsce
+          cd extensions/vscode && npm install
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
