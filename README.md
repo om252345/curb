@@ -4,8 +4,15 @@ Curb is a high-performance security mesh designed to bridge the trust gap betwee
 
 > **Trust is the ultimate developer velocity.** When you can trust your agent to never `rm -rf` your project or leak your `.env` files, you can turn on 100% auto-approve and move at the speed of thought.
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/892ac56e-c00e-47ba-91db-8efeea5eec4e" width="800"/>
-  <img src="https://github.com/user-attachments/assets/09d1d776-aa7b-4e05-bd91-8556b4fd1886" width="800"/>
+  <img src="https://github.com/user-attachments/assets/892ac56e-c00e-47ba-91db-8efeea5eec4e" width="100%" style="max-width: 900px;"/>
+  <br/>
+  <sub>VS Code demo: For demonstration purposes, the agent is intentionally asked to execute potentially dangerous commands.</sub>
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/09d1d776-aa7b-4e05-bd91-8556b4fd1886" width="100%" style="max-width: 900px;"/>
+  <br/>
+  <sub>Claude Code demo: For demonstration purposes, the agent is intentionally asked to execute potentially dangerous commands.</sub>
 </p>
 
 ## The Velocity Problem
