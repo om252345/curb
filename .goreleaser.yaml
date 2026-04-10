@@ -4,19 +4,22 @@ project_name: curb
 # 1. Build definitions for the three Go components
 builds:
   - id: curb
-    main: ./core/main.go
+    dir: core
+    main: ./main.go
     binary: curb
     env: [CGO_ENABLED=0]
     goos: [linux, windows, darwin]
     goarch: [amd64, arm64]
   - id: interceptor
-    main: ./core/cmd/interceptor/main.go
+    dir: core
+    main: ./cmd/interceptor/main.go
     binary: curb-interceptor
     env: [CGO_ENABLED=0]
     goos: [linux, windows, darwin]
     goarch: [amd64, arm64]
   - id: mcp-server
-    main: ./core/cmd/mcp-server/main.go
+    dir: core
+    main: ./cmd/mcp-server/main.go
     binary: curb-mcp
     env: [CGO_ENABLED=0]
     goos: [linux, windows, darwin]
