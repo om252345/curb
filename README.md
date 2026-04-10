@@ -3,16 +3,9 @@
 Curb is a high-performance security mesh designed to bridge the trust gap between developers and AI coding assistants. By providing a transparent, policy-enforced sandbox, Curb allows you to fully leverage agentic AI without the fear of destructive or unauthorized actions.
 
 > **Trust is the ultimate developer velocity.** When you can trust your agent to never `rm -rf` your project or leak your `.env` files, you can turn on 100% auto-approve and move at the speed of thought.
-
-<!-- HERO SECTION: GIFs will be placed here -->
 <p align="center">
-  <br />
-  <i>![export-1775762710539](https://github.com/user-attachments/assets/d3943e36-6f0f-4dfe-a266-57dcf2c23475)</i>
-
-  &nbsp;&nbsp;&nbsp;
-  <i>![curb-claude-code](https://github.com/user-attachments/assets/09d1d776-aa7b-4e05-bd91-8556b4fd1886)
-</i>
-  <br />
+  <img src="https://github.com/user-attachments/assets/892ac56e-c00e-47ba-91db-8efeea5eec4e" width="600"/>
+  <img src="https://github.com/user-attachments/assets/09d1d776-aa7b-4e05-bd91-8556b4fd1886" width="600"/>
 </p>
 
 ## The Velocity Problem
