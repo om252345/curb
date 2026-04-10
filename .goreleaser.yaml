@@ -63,6 +63,9 @@ publishers:
       
       # 4. Package the extension
       npx vsce package --target $TARGET --out "../../dist/curb-{{ .Version }}-$TARGET.vsix"
+      
+      # 5. Upload directly to the drafted GitHub Release
+      gh release upload {{ .Tag }} "../../dist/curb-{{ .Version }}-$TARGET.vsix" --clobber
 
 # 4. Checksums for security
 checksum:
@@ -78,5 +81,3 @@ release:
     owner: om252345
     name: curb
   draft: true # Start as draft for manual verification
-  extra_files:
-    - glob: ./dist/*.vsix
