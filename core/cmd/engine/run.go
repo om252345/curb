@@ -15,6 +15,7 @@ import (
 	"syscall"
 
 	"github.com/om252345/curb/internal/config"
+	"github.com/om252345/curb/internal/proc"
 	"github.com/spf13/cobra"
 )
 
@@ -143,19 +144,13 @@ func spawnAgent(cfg *config.Config, sandboxProfile string, command string, args 
 					for scanner.Scan() {
 						cmd := scanner.Text()
 						if cmd == "PAUSE" {
-							if c.Process != nil {
-								c.Process.Signal(syscall.SIGSTOP)
-							}
+							proc.Suspend(c.Process)
 							fmt.Fprintf(conn, "OK\n")
 						} else if cmd == "RESUME" {
-							if c.Process != nil {
-								c.Process.Signal(syscall.SIGCONT)
-							}
+							proc.Resume(c.Process)
 							fmt.Fprintf(conn, "OK\n")
 						} else if strings.HasPrefix(cmd, "ASK ") {
-							if c.Process != nil {
-								c.Process.Signal(syscall.SIGSTOP)
-							}
+							proc.Suspend(c.Process)
 
 							req := strings.TrimPrefix(cmd, "ASK ")
 							parts := strings.SplitN(req, "|", 2)
@@ -231,9 +226,7 @@ func spawnAgent(cfg *config.Config, sandboxProfile string, command string, args 
 								response = strings.TrimSpace(strings.ToLower(responseBuilder.String()))
 							}
 
-							if c.Process != nil {
-								c.Process.Signal(syscall.SIGCONT)
-							}
+							proc.Resume(c.Process)
 
 							if response == "y" || response == "yes" {
 								fmt.Fprintf(conn, "ALLOW\n")
