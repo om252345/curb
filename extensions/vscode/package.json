@@ -3,7 +3,7 @@
   "displayName": "Curb",
   "description": "Zero-Trust safety net for Claude Code, Cursor or any AI coding assistants",
   "version": "0.1.0",
-  "publisher": "curbdev",
+  "publisher": "curbsec",
   "engines": {
     "vscode": "^1.90.0"
   },
