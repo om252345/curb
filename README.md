@@ -7,9 +7,11 @@ Curb is a high-performance security mesh designed to bridge the trust gap betwee
 <!-- HERO SECTION: GIFs will be placed here -->
 <p align="center">
   <br />
-  <i>[Placeholder for GIF: Curb blocking a destructive command in VS Code]</i>
+  <i>![export-1775762710539](https://github.com/user-attachments/assets/d3943e36-6f0f-4dfe-a266-57dcf2c23475)</i>
+
   &nbsp;&nbsp;&nbsp;
-  <i>[Placeholder for GIF: Curb HITL pausing a destructive command]</i>
+  <i>![curb-claude-code](https://github.com/user-attachments/assets/09d1d776-aa7b-4e05-bd91-8556b4fd1886)
+</i>
   <br />
 </p>
 
